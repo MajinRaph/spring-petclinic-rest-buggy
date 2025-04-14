@@ -1,6 +1,6 @@
 package org.springframework.samples.petclinic.mapper;
 
-import org.mapstruct.Mapper;
+import java.util.Collection;
 import org.mapstruct.Mapping;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
@@ -8,32 +8,32 @@ import org.springframework.samples.petclinic.rest.dto.PetDto;
 import org.springframework.samples.petclinic.rest.dto.PetFieldsDto;
 import org.springframework.samples.petclinic.rest.dto.PetTypeDto;
 
-import java.util.Collection;
+
 
 /**
- * Map Pet & PetDto using mapstruct
+ * Mapea Pet y PetDto usando mapstruct
  */
 @Mapper(uses = VisitMapper.class)
 public interface PetMapper {
 
     @Mapping(source = "owner.id", target = "ownerId")
-    PetDto toPetDto(Pet pet);
+    PetDto aMascotaDto(Pet pet);
 
-    Collection<PetDto> toPetsDto(Collection<Pet> pets);
+    Collection<PetDto> aMascotasDto(Collection<Pet> pets);
 
-    Collection<Pet> toPets(Collection<PetDto> pets);
+    Collection<Pet> aMascotas(Collection<PetDto> pets);
 
     @Mapping(source = "ownerId", target = "owner.id")
-    Pet toPet(PetDto petDto);
+    Pet aMascota(PetDto petDto);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "owner", ignore = true)
     @Mapping(target = "visits", ignore = true)
-    Pet toPet(PetFieldsDto petFieldsDto);
+    Pet aMascota(PetFieldsDto petFieldsDto);
 
-    PetTypeDto toPetTypeDto(PetType petType);
+    PetTypeDto aTipoMascotaDto(PetType petType);
 
-    PetType toPetType(PetTypeDto petTypeDto);
+    PetType aTipoMascota(PetTypeDto petTypeDto);
 
-    Collection<PetTypeDto> toPetTypeDtos(Collection<PetType> petTypes);
+    Collection<PetTypeDto> aTiposMascotaDto(Collection<PetType> petTypes);
 }
